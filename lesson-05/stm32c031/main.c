@@ -23,6 +23,7 @@ int main(void) {
     while (1) { // endless loop
         GPIOA_BSRR_R = 0x20U; // turn the LED on
 
+        // without volatile, the compiler may optimize the loop away and the LED will not blink
         int volatile counter = 0;
         while (counter < 500000) {  // delay loop
             ++counter;
