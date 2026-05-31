@@ -34,8 +34,10 @@ lint*.txt
 *.qlc
 JLink*.*
 
+build/
 tests/
 
+.DS_Store
 Debug/
 Release/
 Spy/
