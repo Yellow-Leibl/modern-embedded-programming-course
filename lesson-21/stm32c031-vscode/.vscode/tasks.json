@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake Configure",
+            "type": "shell",
+            "command": "/opt/ST/STM32CubeCLT_1.21.0/CMake/bin/cmake",
+            "args": [
+                "-S", "${workspaceFolder}",
+                "-B", "${workspaceFolder}/build",
+                "-G", "Ninja",
+                "-DCMAKE_MAKE_PROGRAM=/opt/ST/STM32CubeCLT_1.21.0/Ninja/bin/ninja",
+                "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/gcc-arm-none-eabi.cmake",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "/opt/ST/STM32CubeCLT_1.21.0/CMake/bin/cmake",
+            "args": ["--build", "${workspaceFolder}/build"],
+            "group": { "kind": "build", "isDefault": true },
+            "dependsOn": ["CMake Configure"],
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "rm",
+            "args": ["-rf", "${workspaceFolder}/build"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash (ST-Link)",
+            "type": "shell",
+            "command": "/opt/ST/STM32CubeCLT_1.21.0/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
+            "args": [
+                "--connect", "port=SWD", "reset=HWrst",
+                "--download", "${workspaceFolder}/build/lesson.elf",
+                "-hardRst", "-rst", "--start"
+            ],
+            "dependsOn": ["Build"],
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (ST-Link)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/lesson.elf",
+            "servertype": "stlink",
+            "device": "STM32C031C6",
+            "interface": "swd",
+            "runToEntryPoint": "Reset_Handler",
+            "preLaunchTask": "Build",
+
+            "armToolchainPath": "/opt/ST/STM32CubeCLT_1.21.0/GNU-tools-for-STM32/bin",
+            "gdbPath":          "/opt/ST/STM32CubeCLT_1.21.0/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
+            "serverpath":       "/opt/ST/STM32CubeCLT_1.21.0/STLink-gdb-server/bin/ST-LINK_gdbserver",
+            "stm32cubeprogrammer": "/opt/ST/STM32CubeCLT_1.21.0/STM32CubeProgrammer/bin",
+
+            "svdFile": "/opt/ST/STM32CubeCLT_1.21.0/STMicroelectronics_CMSIS_SVD/STM32C031.svd",
+
+            "showDevDebugOutput": "none"
+        }
+    ]
+}
